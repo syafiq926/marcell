@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh 3 Model CSS + JavaScript Interaktif</title>
+    
+    <style>
+        /* Gaya Dasar */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        /* Gaya Internal */
+        .internal-style {
+            color: white;
+            background-color: #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .internal-style:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Gaya Eksternal (simulasi) */
+        .external-style {
+            color: white;
+            background-color: #2196F3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px dashed #0d47a1;
+            transition: all 0.3s ease;
+        }
+        
+        .external-style h2 {
+            text-decoration: underline;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Gaya untuk Dark Mode */
+        .dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+        
+        .dark-mode .container {
+            background-color: #333;
+            color: #eee;
+        }
+        
+        .dark-mode h1 {
+            color: #fff;
+            border-bottom-color: #555;
+        }
+        
+        /* Gaya untuk Tombol */
+        .theme-btn {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-btn:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+        
+        /* Gaya untuk Animasi */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .click-effect {
+            animation: bounce 0.5s ease;
+        }
+        
+        .counter-display {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #ff5722;
+        }
+        
+        /* Gaya untuk color picker */
+        .color-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .color-picker label {
+            font-weight: bold;
+        }
+        
+        .color-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-btn" id="themeBtn">Toggle Dark Mode</button>
+        
+        <h1>Contoh 3 Model CSS dengan JavaScript</h1>
+        
+        <!-- CSS Inline dengan Tombol "Klik Saya" yang Diperkaya -->
+        <div style="background-color: #f0f0f0; padding: 25px; margin-bottom: 25px; border-radius: 8px; border-left: 5px solid #ff5722;">
+            <h2 style="color: #ff5722; margin-top: 0;">Ini Contoh CSS Inline</h2>
+            <p style="font-style: italic; color: #555;">
+                Styling langsung pada elemen HTML menggunakan atribut style.
+            </p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div id="clickCounter" class="counter-display">0</div>
+                <button id="clickMeBtn" style="background-color: #ff5722; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(255,87,34,0.4)';"
+                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    Klik Saya!
+                </button>
+            </div>
+            
+            <div id="clickMessages" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
+        </div>
+        
+        <!-- Kontrol untuk mengubah warna -->
+        <div class="color-controls">
+            <div class="color-picker">
+                <label for="bgColor">Warna Latar:</label>
+                <input type="color" id="bgColor" value="#f0f0f0" onchange="changeColor('bgColor', 'background-color', 'inlineDiv')">
+                <div class="color-box" style="background-color: #f0f0f0;"></div>
+            </div>
+            
+            <div class="color-picker">
+                <label for="textColor">Warna Teks:</label>
+                <input type="color" id="textColor" value="#ff5722" onchange="changeColor('textColor', 'color', 'inlineDiv h2')">
+                <div class="color-box" style="background-color: #ff5722;"></div>
+            </div>
+            
+            <div class="color-picker">
+                <label for="borderColor">Warna Border:</label>
+                <input type="color" id="borderColor" value="#ff5722" onchange="changeColor('borderColor', 'borderLeftColor', 'inlineDiv')">
+                <div class="color-box" style="background-color: #ff5722;"></div>
+            </div>
+            
+            <button class="theme-btn" id="resetColors" style="background-color: #9e9e9e;">Reset Warna</button>
+        </div>
+        
+        <!-- CSS Internal -->
+        <div class="internal-style" id="internalDiv">
+            <h2>Ini Contoh CSS Internal</h2>
+            <p>Styling yang didefinisikan dalam tag &lt;style&gt; di bagian head dokumen HTML.</p>
+        </div>
+        
+        <!-- CSS Eksternal -->
+        <div class="external-style" id="externalDiv">
+            <h2>Ini Contoh CSS Eksternal</h2>
+            <p>Styling yang didefinisikan dalam file terpisah (disimulasikan dalam tag style).</p>
+        </div>
+    </div>
+
+    <script>
+        // Variabel untuk menghitung klik
+        let clickCount = 0;
+        const messages = [
+            "Keren!",
+            "Lanjutkan!",
+            "Hebat!",
+            "Fantastis!",
+            "Anda Luar Biasa!",
+            "Terus Klik!",
+            "Mantap!",
+            "Sukses!",
+            "Klik Lagi!",
+            "Terima Kasih!"
+        ];
+        
+        // Fungsi untuk tombol "Klik Saya"
+        document.getElementById('clickMeBtn').addEventListener('click', function() {
+            // Tambah hitungan
+            clickCount++;
+            document.getElementById('clickCounter').textContent = clickCount;
+            
+            // Animasi tombol
+            this.classList.add('click-effect');
+            setTimeout(() => {
+                this.classList.remove('click-effect');
+            }, 500);
+            
+            // Tampilkan pesan acak
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageElement = document.getElementById('clickMessages');
+            messageElement.textContent = randomMessage;
+            messageElement.style.color = getRandomColor();
+            
+            // Ubah warna tombol sementara
+            const originalColor = this.style.backgroundColor;
+            this.style.backgroundColor = getRandomColor();
+            setTimeout(() => {
+                this.style.backgroundColor = originalColor;
+            }, 300);
+        });
+        
+        // Fungsi untuk toggle dark mode
+        document.getElementById('themeBtn').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') 
+                ? 'Toggle Light Mode' 
+                : 'Toggle Dark Mode';
+        });
+        
+        // Interaksi dengan elemen CSS Internal
+        document.getElementById('internalDiv').addEventListener('click', function() {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+        
+        // Interaksi dengan elemen CSS Eksternal
+        const externalDiv = document.getElementById('externalDiv');
+        externalDiv.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#1565C0';
+        });
+        externalDiv.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#2196F3';
+        });
+        
+        // Fungsi untuk mengubah warna
+        function changeColor(inputId, property, selector) {
+            const color = document.getElementById(inputId).value;
+            const elements = document.querySelectorAll(selector);
+            
+            elements.forEach(el => {
+                el.style[property] = color;
+            });
+            
+            // Update color box display
+            const colorBoxes = document.querySelectorAll('.color-box');
+            colorBoxes.forEach(box => {
+                if (box.parentElement.querySelector('label').textContent.includes(inputId.replace(/([A-Z])/g, ' $1').trim())) {
+                    box.style.backgroundColor = color;
+                }
+            });
+        }
+        
+        // Fungsi untuk reset warna
+        document.getElementById('resetColors').addEventListener('click', function() {
+            // Reset inline div
+            const inlineDiv = document.querySelector('div[style*="background-color: #f0f0f0"]');
+            inlineDiv.style.backgroundColor = '#f0f0f0';
+            inlineDiv.style.borderLeftColor = '#ff5722';
+            inlineDiv.querySelector('h2').style.color = '#ff5722';
+            
+            // Reset color pickers
+            document.getElementById('bgColor').value = '#f0f0f0';
+            document.getElementById('textColor').value = '#ff5722';
+            document.getElementById('borderColor').value = '#ff5722';
+            
+            // Reset color boxes
+            document.querySelectorAll('.color-box')[0].style.backgroundColor = '#f0f0f0';
+            document.querySelectorAll('.color-box')[1].style.backgroundColor = '#ff5722';
+            document.querySelectorAll('.color-box')[2].style.backgroundColor = '#ff5722';
+        });
+        
+        // Fungsi pembantu untuk warna acak
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>
