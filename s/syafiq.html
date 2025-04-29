@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUGAS DDG SYAFIQ</title>
+    <!-- CSS Internal -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .internal-style {
+            color: white;
+            background-color: #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .internal-style:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-btn:hover {
+            background-color: #555;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- CSS Eksternal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #2196F3;">SMK KRIAN 1 SIDOARJO</h1>
+        
+        <!-- CSS Inline -->
+        <div style="background-color: #f0f0f0; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 5px solid #ff5722;">
+            <h2 style="color: #ff5722; margin-top: 0;">
+                <i class="fas fa-code" style="margin-right: 10px;"></i>Alamat
+            </h2>
+            <p style="font-style: italic; color: #555;">
+                Jl. Kyai Mojo, Krian, Katrungan, Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61262, Indonesia. Telepon: (031) 8971207.
+            </p>
+            <button style="background-color: #ff5722; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;"
+                    onclick="alert('Ini contoh CSS inline pada button!')">
+                Klik Saya
+            </button>
+        </div>
+        
+        <!-- CSS Internal -->
+        <div class="internal-style">
+            <h2><i class="fas fa-file-code" style="margin-right: 10px;"></i>Profil Sekolah</h2>
+            <p>SMKS KRIAN 1 SIDOARJO merupakan salah satu sekolah jenjang SMK berstatus Swasta yang berada di wilayah Kec. Krian, Kab. Sidoarjo, Jawa Timur. SMKS KRIAN 1 SIDOARJO didirikan pada tanggal 15 Juni 1971 dengan Nomor SK Pendirian 156/PWPK-PT/SS/1975 yang berada dalam naungan Kementerian Pendidikan dan Kebudayaan. Dalam kegiatan pembelajaran, sekolah yang memiliki 140 siswa ini dibimbing oleh 56 guru yang profesional di bidangnya. Kepala Sekolah SMKS KRIAN 1 SIDOARJO saat ini adalah Dhini Mekarsari. Operator yang bertanggung jawab adalah Andy Mohamad Suryo.</p>
+            <button id="internalBtn" class="toggle-btn">Toggle Paragraf</button>
+            <p id="internalContent" class="hidden">Akreditasi dan Sertifikasi SMKS KRIAN 1 SIDOARJO
+                Sekolah ini telah terakreditasi A dengan Nomor SK Akreditasi 761/BAN-SM/SK/2019 pada tanggal 9 September 2019. Selain itu, SMKS KRIAN 1 SIDOARJO juga telah tersertifikasi ISO 9001:2008.
+                
+                </p>
+        </div>
+        
+        <!-- CSS Eksternal -->
+        <div class="external-style">
+            <h2><i class="fas fa-file-alt" style="margin-right: 10px;"></i>CSS Eksternal</h2>
+            <p>Styling yang didefinisikan dalam file terpisah dan dihubungkan dengan tag &lt;link&gt;.</p>
+            <div class="color-boxes">
+                <div class="color-box" data-color="red"></div>
+                <div class="color-box" data-color="green"></div>
+                <div class="color-box" data-color="blue"></div>
+            </div>
+        </div>
+        
+        <!-- Demo JavaScript -->
+        <div class="js-demo" style="margin-top: 30px; padding: 20px; background-color: #e3f2fd; border-radius: 8px;">
+            <h2 style="color: #1976D2; margin-top: 0;">
+                <i class="fas fa-laptop-code" style="margin-right: 10px;"></i>Demo JavaScript
+            </h2>
+            <p>Tekan tombol di bawah untuk mengubah warna background:</p>
+            <button id="bgChanger" class="toggle-btn">Ubah Warna Background</button>
+            <p style="margin-top: 20px;">Waktu saat ini: <span id="currentTime"></span></p>
+        </div>
+    </div>
+
+    <!-- JavaScript Eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
